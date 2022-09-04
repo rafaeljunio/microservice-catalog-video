@@ -7,41 +7,55 @@ use PHPUnit\Framework\TestCase;
 
 class CategoryUnitTest extends TestCase
 {
-  public function testAttributes()
-  {
-    $category = new Category(
-      id: 'asdf',
-      name: 'New Category',
-      description: 'New desc',
-      isActive: true,
-    );
+    public function testAttributes() {
+        $category = new Category(
+            id: 'asdf',
+            name: 'New Category',
+            description: 'New desc',
+            isActive: true,
+        );
 
-    $this->assertEquals('New Category', $category->name);
-    $this->assertEquals('New desc', $category->description);
-    $this->assertTrue(true, $category->isActive);
-  }
+        $this->assertEquals('New Category', $category->name);
+        $this->assertEquals('New desc', $category->description);
+        $this->assertTrue(true, $category->isActive);
+    }
 
-  public function testActivated()
-  {
-    $category = new Category(
-      name: 'New Category',
-      isActive: false,
-    );
+    public function testActivated()
+    {
+        $category = new Category(
+            name: 'New Category',
+            isActive: false,
+        );
 
-    $this->assertFalse($category->isActive);
-    $category->activate();
-    $this->assertTrue($category->isActive);
-  }
+        $this->assertFalse($category->isActive);
+        $category->activate();
+        $this->assertTrue($category->isActive);
+    }
 
-  public function testDisabled()
-  {
-    $category = new Category(
-      name: 'New Category',
-      isActive: true,
-    );
+    public function testDisabled()
+    {
+        $category = new Category(
+            name: 'New Category',
+            isActive: true,
+        );
 
-    $this->assertTrue($category->isActive);
-    $category->disable();
-    $this->assertFalse($category->isActive);
-  }
+        $this->assertTrue($category->isActive);
+        $category->disable();
+        $this->assertFalse($category->isActive);
+    }
+
+    public function testUpdate()
+    {
+        $uuid = 'uuid.value';
+
+        $category = new Category(
+            id: $uuid,
+            name: 'New Category',
+            description: 'New desc',
+            isActive: true,
+        );
+
+
+
+    }
 }
