@@ -17,6 +17,8 @@ class CategoryUnitTest extends TestCase
             isActive: true,
         );
 
+        var_dump($category);
+        $this->assertNotEmpty($category->createdAt());
         $this->assertNotEmpty($category->id());
         $this->assertEquals('New Category', $category->name);
         $this->assertEquals('New desc', $category->description);
@@ -49,13 +51,15 @@ class CategoryUnitTest extends TestCase
 
     public function testUpdate()
     {
-        $uuid = (string) Uuid::uuid4()->toString();
+        $uuid = Uuid::uuid4()->toString();
+
 
         $category = new Category(
             id: $uuid,
             name: 'New Category',
             description: 'New desc',
             isActive: true,
+            createdAt: '2023-01-01 12:00:00'
         );
 
         $category->update(
@@ -63,6 +67,7 @@ class CategoryUnitTest extends TestCase
             description: 'new_desc',
         );
 
+        $this->assertEquals($uuid, $category->id());
         $this->assertEquals('new_name', $category->name);
         $this->assertEquals('new_desc', $category->description);
     }
